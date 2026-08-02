@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -47,24 +48,29 @@ header{
     justify-content:space-between;
     align-items:center;
     flex-wrap:wrap;
-    gap:15px;
+    gap:20px;
 }
 
 .logo{
     font-size:2rem;
-    font-weight:bold;
+    font-weight:700;
     color:var(--accent);
 }
 
 .logo span{
     display:block;
-    font-size:.8rem;
+    font-size:.85rem;
     color:var(--secondary);
+}
+
+nav{
+    display:flex;
+    gap:20px;
+    flex-wrap:wrap;
 }
 
 nav a{
     text-decoration:none;
-    margin:0 10px;
     color:var(--text);
     font-weight:600;
 }
@@ -75,7 +81,7 @@ nav a:hover{
 
 .hero{
     text-align:center;
-    padding:60px 20px;
+    padding:50px 20px;
 }
 
 .hero h1{
@@ -84,33 +90,35 @@ nav a:hover{
 }
 
 .hero p{
-    max-width:700px;
+    max-width:800px;
     margin:auto;
+    line-height:1.6;
 }
 
 .controls{
     max-width:1200px;
-    margin:20px auto;
+    margin:auto;
     display:flex;
-    gap:15px;
     flex-wrap:wrap;
     justify-content:center;
-    padding:0 20px;
+    gap:15px;
+    padding:20px;
 }
 
 input,select{
-    padding:10px;
+    padding:12px;
     border:1px solid var(--border);
-    border-radius:8px;
+    border-radius:10px;
+    font-size:1rem;
 }
 
 .grid{
     max-width:1200px;
     margin:auto;
-    padding:20px;
     display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-    gap:20px;
+    grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+    gap:25px;
+    padding:20px;
 }
 
 .card{
@@ -118,13 +126,14 @@ input,select{
     border:1px solid var(--border);
     border-radius:15px;
     overflow:hidden;
-    box-shadow:0 2px 8px rgba(0,0,0,.05);
+    box-shadow:0 3px 8px rgba(0,0,0,.08);
 }
 
 .card img{
     width:100%;
-    height:280px;
+    height:340px;
     object-fit:cover;
+    object-position:center center;
 }
 
 .card-content{
@@ -137,11 +146,12 @@ input,select{
 
 .badge{
     display:inline-block;
-    padding:5px 10px;
+    padding:6px 12px;
     border-radius:20px;
     color:white;
     font-size:.8rem;
-    margin:5px 5px 10px 0;
+    margin-right:5px;
+    margin-bottom:10px;
 }
 
 .sale{
@@ -157,18 +167,19 @@ input,select{
 }
 
 .price{
-    font-size:1.2rem;
-    margin:10px 0;
+    font-size:1.4rem;
+    font-weight:700;
+    margin:15px 0;
 }
 
 button{
+    border:none;
     background:var(--button);
     color:white;
-    border:none;
     padding:10px 15px;
     border-radius:8px;
     cursor:pointer;
-    margin:5px;
+    margin:3px;
 }
 
 button:hover{
@@ -187,9 +198,9 @@ button:hover{
 
 footer{
     text-align:center;
+    margin-top:50px;
     padding:30px;
     border-top:1px solid var(--border);
-    margin-top:50px;
 }
 
 </style>
@@ -219,16 +230,16 @@ Matrix Cloisters
 
 <section class="hero">
 
-<h1>Figus y Coleccionables</h1>
+<h1>Figuritas y Coleccionables</h1>
 
 <p>
-Venta e intercambio de figuritas, fotografías y otras piezas para coleccionistas.
+Venta e intercambio de figuritas raras, fotografías y otros objetos de colección.
 </p>
 
 <br>
 
 <button id="shareBtn">
-📤 Compartir Catálogo
+📤 Compartir catálogo
 </button>
 
 </section>
@@ -241,17 +252,25 @@ id="search"
 placeholder="Buscar jugador o selección..."
 >
 
+<select id="countryFilter">
+<option value="todos">Todas las selecciones</option>
+<option value="Argentina">Argentina</option>
+<option value="Brasil">Brasil</option>
+<option value="España">España</option>
+<option value="Portugal">Portugal</option>
+<option value="Francia">Francia</option>
+<option value="Alemania">Alemania</option>
+</select>
+
 <select id="currencySelect">
+<option value="ars" selected>ARS</option>
 <option value="usd">USD</option>
-<option value="ars">ARS</option>
 </select>
 
 </div>
 
 <section id="catalogo">
-
 <div class="grid" id="products"></div>
-
 </section>
 
 <section class="section" id="feria">
@@ -259,7 +278,7 @@ placeholder="Buscar jugador o selección..."
 <h2>🏷 Feria de Colección</h2>
 
 <p>
-Piezas seleccionadas con descuentos especiales para liberar espacio y renovar inventario.
+Productos con precios especiales para liberar inventario y facilitar intercambios.
 </p>
 
 </section>
@@ -269,9 +288,8 @@ Piezas seleccionadas con descuentos especiales para liberar espacio y renovar in
 <h2>👤 Sobre mí</h2>
 
 <p>
-Soy coleccionista y apasionado de los objetos raros y difíciles de encontrar.
-Este catálogo nació para conectar coleccionistas, completar álbumes,
-intercambiar figuritas y encontrar nuevas piezas para cada colección.
+Coleccionista apasionado por figuritas, fotografías y objetos difíciles de encontrar.
+Este espacio fue creado para conectar coleccionistas, facilitar intercambios y ayudar a completar colecciones.
 </p>
 
 </section>
@@ -297,7 +315,6 @@ WhatsApp Business: Próximamente
 <script>
 
 const whatsapp="54911XXXXXXXX";
-
 const exchangeRate=1400;
 
 const productos=[
@@ -305,6 +322,7 @@ const productos=[
 {
 player:"Lionel Messi",
 team:"Argentina",
+flag:"🇦🇷",
 image:"images/messi.jpg",
 price:80,
 forSale:true,
@@ -315,6 +333,7 @@ rare:true
 {
 player:"Cristiano Ronaldo",
 team:"Portugal",
+flag:"🇵🇹",
 image:"images/ronaldo.jpg",
 price:65,
 forSale:false,
@@ -325,6 +344,7 @@ rare:false
 {
 player:"Lamine Yamal",
 team:"España",
+flag:"🇪🇸",
 image:"images/yamal.jpg",
 price:45,
 forSale:true,
@@ -336,39 +356,52 @@ rare:false
 
 function formatPrice(price){
 
-let currency=
+const currency=
 document.getElementById("currencySelect").value;
 
 if(currency==="ars"){
-
 return "$ " +
 (price*exchangeRate)
 .toLocaleString("es-AR");
-
 }
 
 return "USD " + price;
-
 }
 
 function renderProducts(){
 
-let container=
+const container=
 document.getElementById("products");
 
-let search=
+const search=
 document.getElementById("search")
 .value
 .toLowerCase();
 
+const country=
+document.getElementById("countryFilter")
+.value;
+
 container.innerHTML="";
 
 productos
-.filter(item =>
+
+.filter(item=>{
+
+const matchesSearch=
 item.player.toLowerCase().includes(search)
 ||
-item.team.toLowerCase().includes(search)
-)
+item.team.toLowerCase().includes(search);
+
+const matchesCountry=
+country==="todos"
+||
+item.team===country;
+
+return matchesSearch && matchesCountry;
+
+})
+
 .forEach(item=>{
 
 container.innerHTML+=`
@@ -381,7 +414,9 @@ container.innerHTML+=`
 
 <h2>${item.player}</h2>
 
-<p>${item.team}</p>
+<p>${item.flag} ${item.team}</p>
+
+<br>
 
 ${item.rare ? '<span class="badge rare">Raro</span>' : ''}
 
@@ -413,7 +448,7 @@ Intercambiar
 
 function buySticker(player){
 
-let msg=
+const msg=
 `Hola. Me interesa comprar ${player}.`;
 
 window.open(
@@ -424,14 +459,14 @@ window.open(
 
 function tradeSticker(player){
 
-let msg=
+const msg=
 `Hola.
 
 Me interesa intercambiar:
 
 ${player}
 
-Los figus que puedo ofrecer son:
+Los figus que tengo para ofrecer son:
 
 -
 -
@@ -454,19 +489,19 @@ document
 .addEventListener("input",renderProducts);
 
 document
+.getElementById("countryFilter")
+.addEventListener("change",renderProducts);
+
+document
 .getElementById("shareBtn")
 .addEventListener("click",async()=>{
 
 if(navigator.share){
 
 await navigator.share({
-
 title:"Matrix Cloisters Coleccionables",
-
 text:"Mirá este catálogo de coleccionables.",
-
 url:window.location.href
-
 });
 
 }else{

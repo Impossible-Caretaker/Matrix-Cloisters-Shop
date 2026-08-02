@@ -1,3 +1,257 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Matrix Cloisters | Coleccionables</title>
+
+<style>
+
+:root{
+    --bg:#F7F6F2;
+    --text:#1E2430;
+    --accent:#355C7D;
+    --secondary:#7A6F80;
+    --button:#3A5F8A;
+    --success:#567D46;
+    --rare:#B08D57;
+    --border:#D7D6D1;
+}
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:Segoe UI,Arial,sans-serif;
+    background:var(--bg);
+    color:var(--text);
+}
+
+header{
+    background:white;
+    border-bottom:1px solid var(--border);
+    padding:20px;
+    position:sticky;
+    top:0;
+    z-index:100;
+}
+
+.header-container{
+    max-width:1200px;
+    margin:auto;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    flex-wrap:wrap;
+    gap:20px;
+}
+
+.logo{
+    font-size:2rem;
+    font-weight:700;
+    color:var(--accent);
+}
+
+.logo span{
+    display:block;
+    font-size:.85rem;
+    color:var(--secondary);
+}
+
+nav{
+    display:flex;
+    gap:20px;
+    flex-wrap:wrap;
+}
+
+nav a{
+    text-decoration:none;
+    color:var(--text);
+    font-weight:600;
+}
+
+nav a:hover{
+    color:var(--accent);
+}
+
+.hero{
+    text-align:center;
+    padding:50px 20px;
+}
+
+.hero h1{
+    font-size:3rem;
+    margin-bottom:15px;
+}
+
+.hero p{
+    max-width:800px;
+    margin:auto;
+    line-height:1.6;
+}
+
+.controls{
+    max-width:1200px;
+    margin:auto;
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:center;
+    gap:15px;
+    padding:20px;
+}
+
+input,select{
+    padding:12px;
+    border:1px solid var(--border);
+    border-radius:10px;
+    font-size:1rem;
+}
+
+.grid{
+    max-width:1200px;
+    margin:auto;
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+    gap:25px;
+    padding:20px;
+}
+
+.card{
+    background:white;
+    border:1px solid var(--border);
+    border-radius:15px;
+    overflow:hidden;
+    box-shadow:0 3px 8px rgba(0,0,0,.08);
+}
+
+.card img{
+    width:100%;
+    height:340px;
+    object-fit:cover;
+    object-position:center center;
+}
+
+.card-content{
+    padding:20px;
+}
+
+.card h2{
+    margin-bottom:10px;
+}
+
+.badge{
+    display:inline-block;
+    padding:6px 12px;
+    border-radius:20px;
+    color:white;
+    font-size:.8rem;
+    margin-right:5px;
+    margin-bottom:10px;
+}
+
+.sale{
+    background:var(--success);
+}
+
+.trade{
+    background:var(--accent);
+}
+
+.rare{
+    background:var(--rare);
+}
+
+.price{
+    font-size:1.4rem;
+    font-weight:700;
+    margin:15px 0;
+}
+
+button{
+    border:none;
+    background:var(--button);
+    color:white;
+    padding:10px 15px;
+    border-radius:8px;
+    cursor:pointer;
+    margin:3px;
+}
+
+button:hover{
+    opacity:.9;
+}
+
+.section{
+    max-width:1200px;
+    margin:auto;
+    padding:60px 20px;
+}
+
+.section h2{
+    margin-bottom:20px;
+}
+
+footer{
+    text-align:center;
+    margin-top:50px;
+    padding:30px;
+    border-top:1px solid var(--border);
+}
+
+</style>
+</head>
+
+<body>
+
+<header>
+
+<div class="header-container">
+
+<div class="logo">
+Matrix Cloisters
+<span>Coleccionables</span>
+</div>
+
+<nav>
+#catalogoCatálogo</a>
+#feriaFeria de Colección</a>
+#sobre-miSobre mí</a>
+#contactoContacto</a>
+</nav>
+
+</div>
+
+</header>
+
+<section class="hero">
+
+<h1>Figuritas y Coleccionables</h1>
+
+<p>
+Venta e intercambio de figuritas raras, fotografías y otros objetos de colección.
+</p>
+
+<br>
+
+<button id="shareBtn">
+📤 Compartir catálogo
+</button>
+
+</section>
+
+<div class="controls">
+
+<input
+type="text"
+id="search"
+placeholder="Buscar jugador o selección..."
+>
+
 <select id="countryFilter">
 
 <option value="todos">Todas las colecciones</option>
@@ -56,3 +310,282 @@
 <option value="PAN 🇵🇦">PAN 🇵🇦</option>
 
 </select>
+<select id="currencySelect">
+<option value="ars" selected>ARS</option>
+<option value="usd">USD</option>
+</select>
+
+</div>
+
+<section id="catalogo">
+<div class="grid" id="products"></div>
+</section>
+
+<section class="section" id="feria">
+
+<h2>🏷 Feria de Colección</h2>
+
+<p>
+Productos con precios especiales para liberar inventario y facilitar intercambios.
+</p>
+
+</section>
+
+<section class="section" id="sobre-mi">
+
+<h2>👤 Sobre mí</h2>
+
+<p>
+Coleccionista apasionado por figuritas, fotografías y objetos difíciles de encontrar.
+Este espacio fue creado para conectar coleccionistas, facilitar intercambios y ayudar a completar colecciones.
+</p>
+
+</section>
+
+<section class="section" id="contacto">
+
+<h2>📱 Contacto</h2>
+
+<p>
+WhatsApp Business: Próximamente
+</p>
+
+</section>
+
+<footer>
+
+<p>
+© Matrix Cloisters Coleccionables
+</p>
+
+</footer>
+
+<script>
+
+const whatsapp="54911XXXXXXXX";
+const exchangeRate=1400;
+
+const productos = [
+
+{
+player:"FWC 001",
+team:"FWC 🏆",
+image:"images/fwc001.jpg",
+price:5000,
+forSale:true,
+forTrade:false,
+rare:false
+},
+
+{
+player:"FWC 002",
+team:"FWC 🏆",
+image:"images/fwc002.jpg",
+price:7000,
+forSale:false,
+forTrade:true,
+rare:false
+},
+
+{
+player:"Lionel Messi",
+team:"ARG 🇦🇷",
+image:"images/messi.jpg",
+price:15000,
+forSale:true,
+forTrade:true,
+rare:true
+},
+
+{
+player:"Cristiano Ronaldo",
+team:"POR 🇵🇹",
+image:"images/ronaldo.jpg",
+price:12000,
+forSale:false,
+forTrade:true,
+rare:false
+},
+
+{
+player:"Lamine Yamal",
+team:"ESP 🇪🇸",
+image:"images/yamal.jpg",
+price:9000,
+forSale:true,
+forTrade:false,
+rare:false
+}
+
+];
+function formatPrice(price){
+
+const currency=
+document.getElementById("currencySelect").value;
+
+if(currency==="ars"){
+return "$ " +
+(price*exchangeRate)
+.toLocaleString("es-AR");
+}
+
+return "USD " + price;
+}
+
+function renderProducts(){
+
+const container=
+document.getElementById("products");
+
+const search=
+document.getElementById("search")
+.value
+.toLowerCase();
+
+const country=
+document.getElementById("countryFilter")
+.value;
+
+container.innerHTML="";
+
+productos
+
+.filter(item=>{
+
+const matchesSearch=
+item.player.toLowerCase().includes(search)
+||
+item.team.toLowerCase().includes(search);
+
+const matchesCountry=
+country==="todos"
+||
+item.team===country;
+
+return matchesSearch && matchesCountry;
+
+})
+
+.forEach(item=>{
+
+container.innerHTML+=`
+
+<div class="card">
+
+<img src="${item.image}" alt="${item.player}">
+
+<div class="card-content">
+
+<h2>${item.player}</h2>
+
+<p>${item.flag} ${item.team}</p>
+
+<br>
+
+${item.rare ? '<span class="badge rare">Raro</span>' : ''}
+
+${item.forSale ? '<span class="badge sale">Comprable</span>' : ''}
+
+${item.forTrade ? '<span class="badge trade">Intercambiable</span>' : ''}
+
+<div class="price">
+${formatPrice(item.price)}
+</div>
+
+${item.forSale ? `
+<button onclick="buySticker('${item.player}')">
+Comprar
+</button>
+` : ''}
+
+${item.forTrade ? `
+<button onclick="tradeSticker('${item.player}')">
+Intercambiar
+</button>
+` : ''}
+
+</div>
+
+</div>
+
+`;
+
+});
+
+}
+
+function buySticker(player){
+
+const msg=
+`Hola. Me interesa comprar ${player}.`;
+
+window.open(
+`https://wa.me/${whatsapp}?text=${encodeURIComponent(msg)}`
+);
+
+}
+
+function tradeSticker(player){
+
+const msg=
+`Hola.
+
+Me interesa intercambiar:
+
+${player}
+
+Los figus que tengo para ofrecer son:
+
+-
+-
+-
+
+Gracias.`;
+
+window.open(
+`https://wa.me/${whatsapp}?text=${encodeURIComponent(msg)}`
+);
+
+}
+
+document
+.getElementById("currencySelect")
+.addEventListener("change",renderProducts);
+
+document
+.getElementById("search")
+.addEventListener("input",renderProducts);
+
+document
+.getElementById("countryFilter")
+.addEventListener("change",renderProducts);
+
+document
+.getElementById("shareBtn")
+.addEventListener("click",async()=>{
+
+if(navigator.share){
+
+await navigator.share({
+title:"Matrix Cloisters Coleccionables",
+text:"Mirá este catálogo de coleccionables.",
+url:window.location.href
+});
+
+}else{
+
+await navigator.clipboard.writeText(
+window.location.href
+);
+
+alert("Enlace copiado.");
+}
+
+});
+
+renderProducts();
+
+</script>
+
+</body>
+</html>
